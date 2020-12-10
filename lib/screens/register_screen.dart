@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:myfirstapp_flutter/helper/widget_helper.dart';
 import 'package:myfirstapp_flutter/network/network.dart';
+import 'package:myfirstapp_flutter/screens/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
+  static String id = "register";
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -83,7 +85,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiFullname,
                             fullnameNode,
                             emailNode,
-                            true,context)),
+                            true,
+                            context)),
                   ),
                   Padding(
                     padding:
@@ -102,7 +105,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiEmail,
                             emailNode,
                             phoneNode,
-                            false,context)),
+                            false,
+                            context)),
                   ),
                   Padding(
                     padding:
@@ -121,7 +125,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiPhone,
                             phoneNode,
                             passwordNode,
-                            false,context)),
+                            false,
+                            context)),
                   ),
                   Padding(
                     padding:
@@ -140,7 +145,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiPassword,
                             passwordNode,
                             null,
-                            false,context)),
+                            false,
+                            context)),
                   ),
                   Padding(
                     padding:
@@ -187,12 +193,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Already a member ? "),
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, LoginScreen.id);
+                        },
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ],
                   ),

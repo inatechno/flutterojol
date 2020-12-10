@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:myfirstapp_flutter/helper/widget_helper.dart';
 import 'package:myfirstapp_flutter/network/network.dart';
 import 'package:myfirstapp_flutter/screens/register_screen.dart';
+import 'package:myfirstapp_flutter/screens/utama_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
+  static String id = "login";
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -18,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -150,10 +154,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       GestureDetector(
                         onTap: () {
                           //perpindahan antar halaman atau scaffold
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => RegisterScreen()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => RegisterScreen()));
+                          Navigator.pushNamed(context, RegisterScreen.id);
                         },
                         child: Text(
                           "Register",
@@ -203,16 +208,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void cekValidasi(BuildContext context) {
     if (_formKey.currentState.validate()) {
-      network.loginCostumer(_email.text, _password.text, "0").then((response) {
+      network
+          .loginCostumer(_email.text, _password.text, "0")
+          .then((response) async {
         if (response.result == "true") {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(response.msg),
             ),
           );
-          //pindah halaman
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => ,))
+          // pindah halaman
+          Navigator.pushReplacementNamed(context, UtamaScreen.id);
 
+          //set login session
+          SharedPreferences preferences = await SharedPreferences.getInstance();
+          preferences.setString("iduser", response.idUser);
+          preferences.setString("token", response.token);
+          preferences.setBool("sesi", true);
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
