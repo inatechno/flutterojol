@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirstapp_flutter/helper/widget_helper.dart';
 import 'package:myfirstapp_flutter/network/network.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final FocusNode passwordNode = FocusNode();
   final FocusNode fullnameNode = FocusNode();
   Network network = Network();
-
+  WidgetHelper helper = WidgetHelper();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         elevation: 7,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
-                        child: myTextFormField(
+                        child: helper.myTextFormField(
                             _nama,
                             "Fullname",
                             false,
@@ -82,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiFullname,
                             fullnameNode,
                             emailNode,
-                            true)),
+                            true,context)),
                   ),
                   Padding(
                     padding:
@@ -91,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         elevation: 7,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
-                        child: myTextFormField(
+                        child: helper.myTextFormField(
                             _email,
                             "Email",
                             false,
@@ -101,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiEmail,
                             emailNode,
                             phoneNode,
-                            false)),
+                            false,context)),
                   ),
                   Padding(
                     padding:
@@ -110,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         elevation: 7,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
-                        child: myTextFormField(
+                        child: helper.myTextFormField(
                             _phone,
                             "Phone Number",
                             false,
@@ -120,7 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiPhone,
                             phoneNode,
                             passwordNode,
-                            false)),
+                            false,context)),
                   ),
                   Padding(
                     padding:
@@ -129,7 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         elevation: 7,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
-                        child: myTextFormField(
+                        child: helper.myTextFormField(
                             _password,
                             "Password",
                             true,
@@ -139,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             validasiPassword,
                             passwordNode,
                             null,
-                            false)),
+                            false,context)),
                   ),
                   Padding(
                     padding:
@@ -236,45 +237,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     } else {
       return null;
     }
-  }
-
-  Widget myTextFormField(
-      TextEditingController controller,
-      String label,
-      bool isPassword,
-      TextInputType textInput,
-      String hint,
-      IconData iconPrefix,
-      String Function(String) validator,
-      FocusNode fromNode,
-      FocusNode toNode,
-      bool autofocus) {
-    return TextFormField(
-      obscureText: isPassword,
-      autofocus: autofocus,
-      validator: validator,
-      controller: controller,
-      keyboardType: textInput,
-      focusNode: fromNode,
-      onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(toNode),
-      decoration: InputDecoration(
-        // labelText: label,
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
-        errorMaxLines: 1,
-
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
-        hintText: hint,
-        focusColor: Colors.orange,
-        fillColor: Colors.white24,
-        prefixIcon: Icon(
-          iconPrefix,
-        ),
-      ),
-    );
   }
 
   void cekValidasi(BuildContext context) {

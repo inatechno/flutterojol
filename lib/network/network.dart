@@ -24,4 +24,21 @@ class Network {
       return null;
     }
   }
+
+  Future<ModelAuthentinkasi> loginCostumer(
+        String email, String password, String device) async {
+    final url = Uri.http(_host, "serverojol/api/login");
+    final response = await http.post(url, body: {
+      "device": device,
+      "f_email": email,
+      "f_password": password
+    });
+    if (response.statusCode == 200) {
+      ModelAuthentinkasi responRegister =
+          ModelAuthentinkasi.fromJson(jsonDecode(response.body));
+      return responRegister;
+    } else {
+      return null;
+    }
+  }
 }
