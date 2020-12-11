@@ -39,6 +39,7 @@ dependencies:
   search_map_place: ^0.3.0
   flutter_polyline_points: ^0.2.4
   device_info: ^1.0.0
+  location: ^3.0.0
 
 dev_dependencies:
   flutter_test:

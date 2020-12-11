@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myfirstapp_flutter/helper/helper.dart';
 import 'package:myfirstapp_flutter/helper/widget_helper.dart';
 import 'package:myfirstapp_flutter/network/network.dart';
 import 'package:myfirstapp_flutter/screens/register_screen.dart';
@@ -21,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -206,10 +206,11 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void cekValidasi(BuildContext context) {
+  Future<void> cekValidasi(BuildContext context) async {
+    String device = await getId();
     if (_formKey.currentState.validate()) {
       network
-          .loginCostumer(_email.text, _password.text, "0")
+          .loginCostumer(_email.text, _password.text, device)
           .then((response) async {
         if (response.result == "true") {
           ScaffoldMessenger.of(context).showSnackBar(
