@@ -83,10 +83,40 @@ class _GoRideScreenState extends State<GoRideScreen> {
                     _controller.complete(controller);
                     moveToCurrentLocation();
                   },
-                  onCameraIdle: () {
-                    if () {
-                      
-                    } else {
+                  onCameraIdle: () async {
+                    print("camera idle");
+                    if (isSelectOrigin) {
+                      // originAddress = await getCurrentAddress();
+                      originLatLng = LocationData.fromMap({
+                        "latitude": currentLocation.latitude,
+                        "longitude": currentLocation.longitude
+                      });
+                    }
+                    if (isSelectDestination) {
+                      // destinationAddress = await getCurrentAddress();
+                      destinationLatLng = LocationData.fromMap({
+                        "latitude": currentLocation.latitude,
+                        "longitude": currentLocation.longitude
+                      });
+                    }
+                  },
+                  onCameraMove: (position) {
+                    currentLocation = LocationData.fromMap({
+                      "latitude": currentLocation.latitude,
+                      "longitude": currentLocation.longitude
+                    });
+                    if (isShowPinMarker) {
+                      print("marker drag jalan");
+                      var pinPosition = LatLng(
+                          position.target.latitude, position.target.longitude);
+                      setState(() {
+                        _markers.removeWhere(
+                            (element) => element.markerId.value == "pinMarker");
+                        _markers.add(Marker(
+                            markerId: MarkerId("pinMarker"),
+                            position: pinPosition,
+                            icon: pinMarkerIcon));
+                      });
                     }
                   },
                 )
@@ -120,6 +150,7 @@ class _GoRideScreenState extends State<GoRideScreen> {
     print("token" + token + "\n device" + device);
     moveToCurrentLocation();
   }
+  //
 
   Future<void> moveToCurrentLocation({LocationData locationData}) async {
     if (currentLocation == null) currentLocation = await location.getLocation();
