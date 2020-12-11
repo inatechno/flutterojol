@@ -5,6 +5,7 @@ import 'package:myfirstapp_flutter/screens/loadingsplash_screen.dart';
 import 'package:myfirstapp_flutter/screens/login_screen.dart';
 import 'package:myfirstapp_flutter/screens/register_screen.dart';
 import 'package:myfirstapp_flutter/screens/utama_screen.dart';
+import 'package:myfirstapp_flutter/screens/waitingdriver_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         UtamaScreen.id: (context) => UtamaScreen(),
         GoRideScreen.id: (context) => GoRideScreen(),
         HistoryScreen.id: (context) => HistoryScreen(),
+        WaitingDriverScreen.id: (context) => WaitingDriverScreen(),
       },
     );
   }
