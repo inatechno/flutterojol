@@ -87,4 +87,17 @@ class Network {
       return null;
     }
   }
+  Future<ModelWaitingDriver> cancelBooking(idBooking,token,device) async {
+    final url = Uri.http(_host, "serverojol/api/cancel_booking");
+    final response = await http.post(url, body: {"idbooking": idBooking,
+    "f_token": token,
+    "f_device": device});
+     if (response.statusCode == 200) {
+      ModelWaitingDriver responCheckBooking =
+          ModelWaitingDriver.fromJson(jsonDecode(response.body));
+      return responCheckBooking;
+    } else {
+      return null;
+    }
+  }
 }

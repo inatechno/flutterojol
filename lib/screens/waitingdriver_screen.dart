@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:costumerojol/helper/helper.dart';
 import 'package:costumerojol/network/network.dart';
 import 'package:costumerojol/screens/detaildriver_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 class WaitingDriverScreen extends StatefulWidget {
@@ -58,8 +60,7 @@ class _WaitingDriverScreenState extends State<WaitingDriverScreen> {
     Widget continueButton = FlatButton(
       child: Text("Batal Order"),
       onPressed: () async {
-        Navigator.pop(context);
-        // Navigator.pushReplacementNamed(context, LoginScreen.id);
+        batalOrder();
       },
     );
 
@@ -103,6 +104,22 @@ class _WaitingDriverScreenState extends State<WaitingDriverScreen> {
         _timer.cancel();
       } else {
         Toast.show("sabar ya,, masih mencari driver!", context);
+      }
+    });
+  }
+
+  Future<void> batalOrder() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var token = pref.getString("token");
+    String device = await getId();
+    network.cancelBooking(widget.idBooking, token, device).then((response) {
+      if (response.result == "true") {
+        Toast.show(response.msg, context);
+        Navigator.pop(context);
+        Navigator.pop(context);
+        _timer.cancel();
+      } else {
+        Toast.show(response.msg, context);
       }
     });
   }

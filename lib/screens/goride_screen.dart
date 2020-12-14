@@ -138,6 +138,7 @@ class _GoRideScreenState extends State<GoRideScreen> {
                               "latitude": geolocation.coordinates.latitude,
                               "longitude": geolocation.coordinates.longitude
                             });
+                            moveToCurrentLocation();
                           },
                         ),
                       )
@@ -457,7 +458,7 @@ class _GoRideScreenState extends State<GoRideScreen> {
       if (response.result == "true") {
         Toast.show(response.msg, context);
         Navigator.pushNamed(context, WaitingDriverScreen.id,
-        arguments: response.idBooking.toString());  
+            arguments: response.idBooking.toString());
       } else {
         Toast.show(response.msg, context);
       }
