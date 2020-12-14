@@ -24,7 +24,7 @@ class History extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    color: Colors.blue,
+                    color: Colors.orange[900],
                     height: 30,
                     width: double.infinity,
                     child: Align(

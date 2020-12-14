@@ -106,7 +106,9 @@ class _HistoryScreenState extends State<HistoryScreen>
           dataHistory = response.data;
         });
       } else {
-        dataHistory = null;
+        setState(() {
+          dataHistory = null;
+        });
       }
     });
   }
