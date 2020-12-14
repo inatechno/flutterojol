@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
               );
             },
           );
-        } else if(settings.name == DetailDriverScreen.id){
-           return MaterialPageRoute(
+        } else if (settings.name == DetailDriverScreen.id) {
+          return MaterialPageRoute(
             builder: (context) {
               return DetailDriverScreen(
-             idDriver: settings.arguments,
+                idDriver: settings.arguments,
               );
             },
           );
@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
         UtamaScreen.id: (context) => UtamaScreen(),
         GoRideScreen.id: (context) => GoRideScreen(),
         HistoryScreen.id: (context) => HistoryScreen(),
-        
       },
     );
   }

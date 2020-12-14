@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:costumerojol/model/model_driver.dart';
+import 'package:costumerojol/model/model_history.dart';
 import 'package:costumerojol/model/model_waitingdriver.dart';
 import 'package:http/http.dart' as http;
 import 'package:costumerojol/model/model_authentikasi.dart';
@@ -109,6 +110,21 @@ class Network {
       ModelDriver responseDriver =
           ModelDriver.fromJson(jsonDecode(response.body));
       return responseDriver;
+    } else {
+      return null;
+    }
+  }
+
+  Future<ModelHistory> getHistory(idUser,status,token,device) async {
+    final url = Uri.http(_host, "serverojol/api/get_booking");
+    final response = await http.post(url, body: {"f_idUser": idUser,
+    "status": status,
+    "f_token": token,
+    "f_device": device});
+    if (response.statusCode == 200) {
+      ModelHistory responseHistory =
+          ModelHistory.fromJson(jsonDecode(response.body));
+      return responseHistory;
     } else {
       return null;
     }
