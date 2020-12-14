@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:costumerojol/model/model_driver.dart';
 import 'package:costumerojol/model/model_waitingdriver.dart';
 import 'package:http/http.dart' as http;
 import 'package:costumerojol/model/model_authentikasi.dart';
@@ -79,7 +80,7 @@ class Network {
   Future<ModelWaitingDriver> checkBooking(idBooking) async {
     final url = Uri.http(_host, "serverojol/api/checkBooking");
     final response = await http.post(url, body: {"idbooking": idBooking});
-     if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
       ModelWaitingDriver responCheckBooking =
           ModelWaitingDriver.fromJson(jsonDecode(response.body));
       return responCheckBooking;
@@ -87,15 +88,27 @@ class Network {
       return null;
     }
   }
-  Future<ModelWaitingDriver> cancelBooking(idBooking,token,device) async {
+
+  Future<ModelWaitingDriver> cancelBooking(idBooking, token, device) async {
     final url = Uri.http(_host, "serverojol/api/cancel_booking");
-    final response = await http.post(url, body: {"idbooking": idBooking,
-    "f_token": token,
-    "f_device": device});
-     if (response.statusCode == 200) {
+    final response = await http.post(url,
+        body: {"idbooking": idBooking, "f_token": token, "f_device": device});
+    if (response.statusCode == 200) {
       ModelWaitingDriver responCheckBooking =
           ModelWaitingDriver.fromJson(jsonDecode(response.body));
       return responCheckBooking;
+    } else {
+      return null;
+    }
+  }
+
+  Future<ModelDriver> getDetailDriver(idDriver) async {
+    final url = Uri.http(_host, "serverojol/api/get_driver");
+    final response = await http.post(url, body: {"f_iddriver": idDriver});
+    if (response.statusCode == 200) {
+      ModelDriver responseDriver =
+          ModelDriver.fromJson(jsonDecode(response.body));
+      return responseDriver;
     } else {
       return null;
     }
