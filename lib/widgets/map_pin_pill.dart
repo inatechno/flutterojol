@@ -71,7 +71,7 @@ class MapPinPillComponentState extends State<MapPinPillComponent> {
                 padding: EdgeInsets.all(15),
                 child: Image.asset(
                     widget.currentlySelectedPin?.pinPath ??
-                        "assets/driving_pin.png",
+                        "images/driving_pin.png",
                     width: 50,
                     height: 50),
               )
