@@ -1,11 +1,12 @@
+import 'package:costumerojol/screens/detaildriver_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp_flutter/screens/goride_screen.dart';
-import 'package:myfirstapp_flutter/screens/history_screen.dart';
-import 'package:myfirstapp_flutter/screens/loadingsplash_screen.dart';
-import 'package:myfirstapp_flutter/screens/login_screen.dart';
-import 'package:myfirstapp_flutter/screens/register_screen.dart';
-import 'package:myfirstapp_flutter/screens/utama_screen.dart';
-import 'package:myfirstapp_flutter/screens/waitingdriver_screen.dart';
+import 'package:costumerojol/screens/goride_screen.dart';
+import 'package:costumerojol/screens/history_screen.dart';
+import 'package:costumerojol/screens/loadingsplash_screen.dart';
+import 'package:costumerojol/screens/login_screen.dart';
+import 'package:costumerojol/screens/register_screen.dart';
+import 'package:costumerojol/screens/utama_screen.dart';
+import 'package:costumerojol/screens/waitingdriver_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,6 +23,25 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       // home: LoadingSplashScreen(),
+      onGenerateRoute: (settings) {
+        if (settings.name == WaitingDriverScreen.id) {
+          return MaterialPageRoute(
+            builder: (context) {
+              return WaitingDriverScreen(
+                idBooking: settings.arguments,
+              );
+            },
+          );
+        } else if(settings.name == DetailDriverScreen.id){
+           return MaterialPageRoute(
+            builder: (context) {
+              return DetailDriverScreen(
+                // idDriver settings.arguments,
+              );
+            },
+          );
+        }
+      },
       initialRoute: LoadingSplashScreen.id,
       routes: {
         LoadingSplashScreen.id: (context) => LoadingSplashScreen(),
@@ -30,7 +50,7 @@ class MyApp extends StatelessWidget {
         UtamaScreen.id: (context) => UtamaScreen(),
         GoRideScreen.id: (context) => GoRideScreen(),
         HistoryScreen.id: (context) => HistoryScreen(),
-        WaitingDriverScreen.id: (context) => WaitingDriverScreen(),
+        
       },
     );
   }

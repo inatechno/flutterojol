@@ -7,9 +7,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:indonesia/indonesia.dart';
 import 'package:location/location.dart';
-import 'package:myfirstapp_flutter/helper/helper.dart';
-import 'package:myfirstapp_flutter/network/network.dart';
-import 'package:myfirstapp_flutter/screens/waitingdriver_screen.dart';
+import 'package:costumerojol/helper/helper.dart';
+import 'package:costumerojol/network/network.dart';
+import 'package:costumerojol/screens/waitingdriver_screen.dart';
 import 'package:search_map_place/search_map_place.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
@@ -456,7 +456,8 @@ class _GoRideScreenState extends State<GoRideScreen> {
         .then((response) {
       if (response.result == "true") {
         Toast.show(response.msg, context);
-        Navigator.pushNamed(context, WaitingDriverScreen.id);
+        Navigator.pushNamed(context, WaitingDriverScreen.id,
+        arguments: response.idBooking.toString());  
       } else {
         Toast.show(response.msg, context);
       }

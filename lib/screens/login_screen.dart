@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myfirstapp_flutter/helper/helper.dart';
-import 'package:myfirstapp_flutter/helper/widget_helper.dart';
-import 'package:myfirstapp_flutter/network/network.dart';
-import 'package:myfirstapp_flutter/screens/register_screen.dart';
-import 'package:myfirstapp_flutter/screens/utama_screen.dart';
+import 'package:costumerojol/helper/helper.dart';
+import 'package:costumerojol/helper/widget_helper.dart';
+import 'package:costumerojol/network/network.dart';
+import 'package:costumerojol/screens/register_screen.dart';
+import 'package:costumerojol/screens/utama_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {

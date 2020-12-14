@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myfirstapp_flutter/helper/widget_helper.dart';
-import 'package:myfirstapp_flutter/network/network.dart';
-import 'package:myfirstapp_flutter/screens/login_screen.dart';
+import 'package:costumerojol/helper/widget_helper.dart';
+import 'package:costumerojol/network/network.dart';
+import 'package:costumerojol/screens/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   static String id = "register";

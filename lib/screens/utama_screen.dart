@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp_flutter/screens/login_screen.dart';
+import 'package:costumerojol/screens/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'goride_screen.dart';

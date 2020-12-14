@@ -1,13 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myfirstapp_flutter">
+    package="com.inatechno.costumerojol">
    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
    <application
-        android:label="myfirstapp_flutter"
+        android:label="costumerojol"
         android:usesCleartextTraffic="true"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ojol">
 
          <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyA961qUUYeU2tnBuk4gS1fpiXVjnCFnbcQ"/>

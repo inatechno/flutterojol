@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import 'package:costumerojol/model/model_waitingdriver.dart';
 import 'package:http/http.dart' as http;
-import 'package:myfirstapp_flutter/model/model_authentikasi.dart';
-import 'package:myfirstapp_flutter/model/model_insertbooking.dart';
+import 'package:costumerojol/model/model_authentikasi.dart';
+import 'package:costumerojol/model/model_insertbooking.dart';
 
 class Network {
   static String _host = "udakita.com";
@@ -52,24 +53,36 @@ class Network {
     token,
     device,
   ) async {
-     final url = Uri.http(_host, "serverojol/api/insert_booking");
+    final url = Uri.http(_host, "serverojol/api/insert_booking");
     final response = await http.post(url, body: {
       "f_idUser": idUser,
       "f_latAwal": latAwal,
       "f_awal": lokasiAwal,
-       "f_latAkhir": latAkhir,
+      "f_latAkhir": latAkhir,
       "f_lngAkhir": lngAkhir,
       "f_akhir": lokasiAkhir,
-       "f_catatan": catatan,
+      "f_catatan": catatan,
       "f_jarak": jarak,
       "f_lngAwal": lngAwal,
-       "f_token": token,
+      "f_token": token,
       "f_device": device
     });
-       if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
       ModelInsertBooking responInsertBooking =
           ModelInsertBooking.fromJson(jsonDecode(response.body));
       return responInsertBooking;
+    } else {
+      return null;
+    }
+  }
+
+  Future<ModelWaitingDriver> checkBooking(idBooking) async {
+    final url = Uri.http(_host, "serverojol/api/checkBooking");
+    final response = await http.post(url, body: {"idbooking": idBooking});
+     if (response.statusCode == 200) {
+      ModelWaitingDriver responCheckBooking =
+          ModelWaitingDriver.fromJson(jsonDecode(response.body));
+      return responCheckBooking;
     } else {
       return null;
     }
