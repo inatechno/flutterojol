@@ -43,7 +43,6 @@ class _HistoryScreenState extends State<HistoryScreen>
       }
     });
     getPref();
-    getHistory("2");
   }
 
   @override
@@ -99,8 +98,8 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-  getHistory(String status) {
-    network.getHistory(iduser, status, token, device).then((response) {
+  getHistory(String status) async {
+    return network.getHistory(iduser, status, token, device).then((response) {
       if (response.result == "true") {
         setState(() {
           dataHistory = response.data;
@@ -118,5 +117,6 @@ class _HistoryScreenState extends State<HistoryScreen>
     iduser = sharedPreferences.getString("iduser");
     token = sharedPreferences.getString("token");
     device = await getId();
+    getHistory("2");
   }
 }
