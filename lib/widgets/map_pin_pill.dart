@@ -1,4 +1,4 @@
-import 'package:costumerojol/model/pin_pill_info.dart'; 
+import 'package:driverojol/model/pin_pill_info.dart';
 import 'package:flutter/material.dart';
 
 class MapPinPillComponent extends StatefulWidget {

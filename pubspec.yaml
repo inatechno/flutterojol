@@ -1,4 +1,4 @@
-name: costumerojol
+name: driverojol
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -42,6 +42,7 @@ dependencies:
   location: ^3.0.0
   indonesia: ^1.0.1
   flutter_launcher_icons: ^0.8.1
+  firebase_messaging: ^7.0.3
  
 
 dev_dependencies:

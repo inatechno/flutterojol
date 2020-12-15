@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:costumerojol/helper/widget_helper.dart';
-import 'package:costumerojol/network/network.dart';
-import 'package:costumerojol/screens/login_screen.dart';
+import 'package:driverojol/helper/widget_helper.dart';
+import 'package:driverojol/network/network.dart';
+import 'package:driverojol/screens/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   static String id = "register";
@@ -21,6 +21,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final FocusNode fullnameNode = FocusNode();
   Network network = Network();
   WidgetHelper helper = WidgetHelper();
+  bool _obsecureText = true;
+
+  void _toogleEye() {
+    setState(() {
+      _obsecureText = !_obsecureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: helper.myTextFormField(
                             _password,
                             "Password",
-                            true,
+                            _obsecureText,
                             TextInputType.number,
                             "Password",
                             Icons.lock,
@@ -146,7 +154,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             passwordNode,
                             null,
                             false,
-                            context)),
+                            context,
+                            suffix: IconButton(
+                                icon: Icon(_obsecureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: _toogleEye))),
                   ),
                   Padding(
                     padding:

@@ -1,4 +1,4 @@
-import 'package:costumerojol/model/model_history.dart';
+import 'package:driverojol/model/model_history.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 

@@ -35,8 +35,8 @@ class Data {
   String userEmail;
   String userPassword;
   String userHp;
-  Null userAvatar;
-  Null userGcm;
+  String userAvatar;
+  String userGcm;
   String userRegister;
   String userLevel;
   String userStatus;

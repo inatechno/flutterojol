@@ -1,4 +1,4 @@
-package com.inatechno.costumerojol
+package com.inatechno.driverojol
 
 import io.flutter.embedding.android.FlutterActivity
 

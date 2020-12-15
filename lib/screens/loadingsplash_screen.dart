@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:costumerojol/screens/login_screen.dart';
-import 'package:costumerojol/screens/utama_screen.dart';
+import 'package:driverojol/screens/login_screen.dart';
+import 'package:driverojol/screens/utama_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splashscreen/splashscreen.dart';
 

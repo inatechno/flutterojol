@@ -1,18 +1,18 @@
 import 'dart:convert';
 
-import 'package:costumerojol/model/model_driver.dart';
-import 'package:costumerojol/model/model_history.dart';
-import 'package:costumerojol/model/model_waitingdriver.dart';
+import 'package:driverojol/model/model_driver.dart';
+import 'package:driverojol/model/model_history.dart';
+import 'package:driverojol/model/model_waitingdriver.dart';
 import 'package:http/http.dart' as http;
-import 'package:costumerojol/model/model_authentikasi.dart';
-import 'package:costumerojol/model/model_insertbooking.dart';
+import 'package:driverojol/model/model_authentikasi.dart';
+import 'package:driverojol/model/model_insertbooking.dart';
 
 class Network {
   static String _host = "udakita.com";
 
   Future<ModelAuthentinkasi> daftarCostumer(
       String nama, String email, String password, String phone) async {
-    final url = Uri.http(_host, "serverojol/api/daftar");
+    final url = Uri.http(_host, "serverojol/api/daftar/3");
     final response = await http.post(url, body: {
       "nama": nama,
       "email": email,
@@ -30,7 +30,7 @@ class Network {
 
   Future<ModelAuthentinkasi> loginCostumer(
       String email, String password, String device) async {
-    final url = Uri.http(_host, "serverojol/api/login");
+    final url = Uri.http(_host, "serverojol/api/login_driver");
     final response = await http.post(url,
         body: {"device": device, "f_email": email, "f_password": password});
     if (response.statusCode == 200) {
@@ -115,16 +115,33 @@ class Network {
     }
   }
 
-  Future<ModelHistory> getHistory(idUser,status,token,device) async {
+  Future<ModelHistory> getHistory(idUser, status, token, device) async {
     final url = Uri.http(_host, "serverojol/api/get_booking");
-    final response = await http.post(url, body: {"f_idUser": idUser,
-    "status": status,
-    "f_token": token,
-    "f_device": device});
+    final response = await http.post(url, body: {
+      "f_idUser": idUser,
+      "status": status,
+      "f_token": token,
+      "f_device": device
+    });
     if (response.statusCode == 200) {
       ModelHistory responseHistory =
           ModelHistory.fromJson(jsonDecode(response.body));
       return responseHistory;
+    } else {
+      return null;
+    }
+  }
+
+  Future<ModelHistory> registerFcm(idUser, fcm) async {
+    final url = Uri.http(_host, "serverojol/api/registerGcm");
+    final response = await http.post(url, body: {
+      "f_idUser": idUser,
+      "f_gcm": fcm
+    });
+    if (response.statusCode == 200) {
+      ModelHistory responsefcm =
+          ModelHistory.fromJson(jsonDecode(response.body));
+      return responsefcm;
     } else {
       return null;
     }

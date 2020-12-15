@@ -1,7 +1,7 @@
-import 'package:costumerojol/helper/helper.dart';
-import 'package:costumerojol/model/model_history.dart';
-import 'package:costumerojol/network/network.dart';
-import 'package:costumerojol/widgets/history.dart';
+import 'package:driverojol/helper/helper.dart';
+import 'package:driverojol/model/model_history.dart';
+import 'package:driverojol/network/network.dart';
+import 'package:driverojol/widgets/history.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

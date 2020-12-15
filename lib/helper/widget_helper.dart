@@ -12,7 +12,8 @@ class WidgetHelper {
       FocusNode fromNode,
       FocusNode toNode,
       bool autofocus,
-      BuildContext context) {
+      BuildContext context,
+      {IconButton suffix = null}) {
     return TextFormField(
       obscureText: isPassword,
       autofocus: autofocus,
@@ -22,22 +23,21 @@ class WidgetHelper {
       focusNode: fromNode,
       onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(toNode),
       decoration: InputDecoration(
-        // labelText: label,
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
-        errorMaxLines: 1,
-
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
-        hintText: hint,
-        focusColor: Colors.orange,
-        fillColor: Colors.white24,
-        prefixIcon: Icon(
-          iconPrefix,
-        ),
-      ),
+          // labelText: label,
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+          ),
+          errorMaxLines: 1,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+          ),
+          hintText: hint,
+          focusColor: Colors.orange,
+          fillColor: Colors.white24,
+          prefixIcon: Icon(
+            iconPrefix,
+          ),
+          suffixIcon: suffix),
     );
   }
 }

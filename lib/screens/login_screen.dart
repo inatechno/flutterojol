@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:costumerojol/helper/helper.dart';
-import 'package:costumerojol/helper/widget_helper.dart';
-import 'package:costumerojol/network/network.dart';
-import 'package:costumerojol/screens/register_screen.dart';
-import 'package:costumerojol/screens/utama_screen.dart';
+import 'package:driverojol/helper/helper.dart';
+import 'package:driverojol/helper/widget_helper.dart';
+import 'package:driverojol/network/network.dart';
+import 'package:driverojol/screens/register_screen.dart';
+import 'package:driverojol/screens/utama_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,6 +19,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final FocusNode passwordNode = FocusNode();
   Network network = Network();
   WidgetHelper helper = WidgetHelper();
+  bool _obsecureText = true;
+
+  void _toogleEye() {
+    setState(() {
+      _obsecureText = !_obsecureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: helper.myTextFormField(
                             _password,
                             "Password",
-                            true,
+                            _obsecureText,
                             TextInputType.number,
                             "Password",
                             Icons.lock,
@@ -104,7 +112,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             passwordNode,
                             null,
                             false,
-                            context)),
+                            context,
+                            suffix: IconButton(
+                                icon: Icon(_obsecureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: _toogleEye))),
                   ),
                   Padding(
                     padding:
